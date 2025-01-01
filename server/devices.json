@@ -1,0 +1,28 @@
+{
+  "devices": [
+    {
+      "name": "Horloge",
+      "model": "clock"
+    },
+    {
+      "name": "Lumi Gateway V3",
+      "model": "lumi.gateway.v3",
+      "ip": "192.168.1.42",
+      "token": "ff1bb6d56e18dea94d038f6e4915346c"
+    }
+  ],
+  "names": [
+    {
+      "id": "clock",
+      "name": "Horloge"
+    },
+    {
+      "id": "miio:275194093:light",
+      "name": "Veilleuse"
+    },
+    {
+      "id": "miio:158d000486df4d",
+      "name": "Th Dressing"
+    }
+  ]
+}
