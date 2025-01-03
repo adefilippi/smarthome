@@ -2,7 +2,8 @@
   <masonry-wall :items="devices" :ssr-columns="1" maxColumns="3" :gap="16">
     <template #default="{ item, index }">
       <clock v-if="item.model === 'clock'"></clock>
-      <light-switch v-else-if="item.model === 'miio:gateway-light'" :device="item" @state-changed="onStateChanged"></light-switch>
+      <light-switch v-else-if="item.model === 'miio:gateway-light' || item.model === 'yeelink.light.bslamp2' || item.model === 'yeelink.light.color1'" :device="item" @state-changed="onStateChanged"></light-switch>
+      <light-switch v-else-if="item.model === 'yeelink.light.lamp4'" :device="item" @state-changed="onStateChanged"></light-switch>
       <temperature v-else-if="item.model === 'lumi.weather'" :device="item"></temperature>
       <div v-else></div>
     </template>
