@@ -10,10 +10,11 @@ export default defineEventHandler(async (event) => {
             if (d.id === id) {
                 device = d
             }
-
-            for (const child of d.children()) {
-                if (child.id === id) {
-                    device = child
+            if (d.children !== undefined) {
+                for (const child of d.children()) {
+                    if (child.id === id) {
+                        device = child
+                    }
                 }
             }
         })

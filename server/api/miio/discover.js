@@ -2,9 +2,12 @@ import * as miio from 'miio'
 import fs from 'fs'
 import {serverStore} from "~/server/store.ts";
 
+import YeelightColor from 'miio/lib/devices/yeelight.color'
+import YeelightMono from "miio/lib/devices/yeelight.mono.js";
+miio.models['yeelink.light.bslamp2'] = YeelightColor
+miio.models['yeelink.light.lamp4'] = YeelightMono
+
 export default defineEventHandler(async (event) => {
-
-
     async function getDevices(event) {
         const devices = [];
         const devicesList = []
@@ -13,7 +16,6 @@ export default defineEventHandler(async (event) => {
             // Load file devices.json
             const data = fs.readFileSync('./server/devices.json', 'utf8');
             const devicesListFromJson = JSON.parse(data);
-
             for (const deviceItem of devicesListFromJson.devices) {
                 if (deviceItem.ip === undefined) {
                     const d = {
@@ -24,14 +26,15 @@ export default defineEventHandler(async (event) => {
                     continue
                 }
 
+                console.log("Connecting to " + deviceItem.ip)
                 await miio.device({address: deviceItem.ip, token: deviceItem.token})
                     .then(async device => {
-                        console.log(devicesListFromJson.names.find(n => n.id === device.id))
                         devicesList.push(device)
                         const name = devicesListFromJson.names.find(n => n.id === device.id)
+
                         const d = {
                             id: device.id,
-                            name:  name === undefined ? device.id : name.name,
+                            name: name === undefined ? deviceItem.name : name.name,
                             model: device.miioModel,
                             capabilities: [...device.metadata.capabilities],
                             types: [...device.metadata.types],
@@ -39,23 +42,25 @@ export default defineEventHandler(async (event) => {
                             childs: []
                         }
 
-                        for (const child of device.children()) {
-                            const childName = devicesListFromJson.names.find(n => n.id === child.id)
+                        if (device.children !== undefined) {
+                            for (const child of device.children()) {
+                                const childName = devicesListFromJson.names.find(n => n.id === child.id)
 
-                            if (child.miioModel === undefined) {
-                                const t = [...child.metadata.types]
-                                t.splice(t.indexOf('miio:subdevice'), 1)
-                                child.miioModel = t[0]
+                                if (child.miioModel === undefined) {
+                                    const t = [...child.metadata.types]
+                                    t.splice(t.indexOf('miio:subdevice'), 1)
+                                    child.miioModel = t[0]
+                                }
+                                const ch = {
+                                    id: child.id,
+                                    name: childName === undefined ? device.id : childName.name,
+                                    model: child.miioModel,
+                                    capabilities: [...child.metadata.capabilities],
+                                    types: [...child.metadata.types],
+                                    values: await getDeviceValues(child)
+                                }
+                                devices.push(ch)
                             }
-                            const ch = {
-                                id: child.id,
-                                name:  childName === undefined ? device.id : childName.name,
-                                model: child.miioModel,
-                                capabilities: [...child.metadata.capabilities],
-                                types: [...child.metadata.types],
-                                values: await getDeviceValues(child)
-                            }
-                            devices.push(ch)
                         }
                         devices.push(d)
                     })

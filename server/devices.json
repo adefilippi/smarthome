@@ -9,6 +9,30 @@
       "model": "lumi.gateway.v3",
       "ip": "192.168.1.42",
       "token": "ff1bb6d56e18dea94d038f6e4915346c"
+    },
+    {
+      "name": "Lampe canapé",
+      "model": "yeelink.light.color1",
+      "ip": "192.168.1.18",
+      "token": "5049b04500e2b031e72706fa11944e06"
+    },
+    {
+      "name": "Chevet Anthony",
+      "model": "yeelink.light.bslamp2",
+      "ip": "192.168.1.13",
+      "token": "79f17ece15eea34d29b846e11663865e"
+    },
+    {
+      "name": "Chevet Estelle",
+      "model": "yeelink.light.bslamp2",
+      "ip": "192.168.1.20",
+      "token": "bc24fcdb37eb3086cd8b4e3404f7d989"
+    },
+    {
+      "name": "Lampe Bureau Estelle",
+      "model": "yeelink.light.lamp4",
+      "ip": "192.168.1.14",
+      "token": "fe863ebd9bb9ccaa0b867776f62341ae"
     }
   ],
   "names": [
