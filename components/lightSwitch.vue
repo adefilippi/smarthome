@@ -1,5 +1,6 @@
 <template>
-  <div class="h-96 ">
+  <div class="w-auto" style="background: rgba(32, 96, 145, 0.5)">
+    <div v-if="expanded" class="p-6">
     <div class="text-3xl text-center my-6">{{ device.name }}</div>
     <div class="flex justify-center items-center flex-col">
       <div class="light-switch">
@@ -8,6 +9,24 @@
 
         <div class="custom-slider mt-4 h-8" :style="{ '--ProgressPercent': luminosity + '%', '--ProgressColor': color }">
           <input v-model="luminosity" type="range" min="0" max="100" class="slider" v-if="on"/>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div v-else class="p-6 rounded-lg">
+      <div class="flex flex-row">
+        <div class="basis-3/4" @click="expanded = true">
+          <div class="text-3xl text-center my-6">{{ device.name }}</div>
+        </div>
+        <div class="basis-1/4">
+          <div class="flex flex-col justify-center items-center h-20 w-20 rounded-full" :style="`background: ${color}`"
+          :class="on ? 'opacity-100' : 'opacity-50'" >
+            <button
+                class="rcp-btn"
+                type="button"
+                @click.prevent="on = !on"
+            ><Icon name="uil:lightbulb-alt" class="text-5xl" /></button>
+          </div>
         </div>
       </div>
     </div>
@@ -24,6 +43,7 @@ const on = ref(true)
 const color = ref('#FF0000')
 const luminosity = ref(20)
 const hue = ref(0)
+const expanded = ref(false)
 
 const props = defineProps({
   device: {

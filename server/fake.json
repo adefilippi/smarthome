@@ -1,0 +1,280 @@
+[
+  {
+    "id": "clock",
+    "model": "clock"
+  },
+  {
+    "id": "miio:275194093:light",
+    "name": "Veilleuse",
+    "model": "miio:gateway-light",
+    "capabilities": [
+      "colorable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state"
+    ],
+    "types": [
+      "miio:subdevice",
+      "miio:gateway-light",
+      "light",
+      "sub-thing"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#4D91EF",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 0,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ]
+  },
+  {
+    "id": "miio:158d000486df4d",
+    "name": "Th Dressing",
+    "model": "lumi.weather",
+    "capabilities": [
+      "battery-level",
+      "atmospheric-pressure",
+      "relative-humidity",
+      "temperature",
+      "state"
+    ],
+    "types": [
+      "sensor",
+      "miio",
+      "miio:subdevice",
+      "sub-thing"
+    ],
+    "values": [
+      {
+        "name": "temperature",
+        "value": 18.83,
+        "unit": "°C"
+      },
+      {
+        "name": "relative-humidity",
+        "value": 45.71,
+        "unit": "%"
+      },
+      {
+        "name": "atmospheric-pressure",
+        "value": 101939,
+        "unit": "Pa"
+      },
+      {
+        "name": "battery-level",
+        "value": -560,
+        "unit": "%"
+      }
+    ]
+  },
+  {
+    "id": "miio:315036632",
+    "name": "Lampe canapé",
+    "model": "yeelink.light.color1",
+    "capabilities": [
+      "color:full",
+      "color:temperature",
+      "colorable",
+      "nameable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state",
+      "fading"
+    ],
+    "types": [
+      "miio:yeelight",
+      "miio",
+      "light"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#FFD0A4",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ],
+    "childs": []
+  },
+  {
+    "id": "miio:361617141",
+    "name": "Chevet Anthony",
+    "model": "yeelink.light.bslamp2",
+    "capabilities": [
+      "color:full",
+      "color:temperature",
+      "colorable",
+      "nameable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state",
+      "fading"
+    ],
+    "types": [
+      "miio:yeelight",
+      "miio",
+      "light"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#FF4200",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 96,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ],
+    "childs": []
+  },
+  {
+    "id": "miio:392911614",
+    "name": "Chevet Estelle",
+    "model": "yeelink.light.bslamp2",
+    "capabilities": [
+      "color:full",
+      "color:temperature",
+      "colorable",
+      "nameable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state",
+      "fading"
+    ],
+    "types": [
+      "miio:yeelight",
+      "miio",
+      "light"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#00FF3B",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ],
+    "childs": []
+  },
+  {
+    "id": "miio:335338532",
+    "name": "Lampe Bureau Estelle",
+    "model": "yeelink.light.lamp4",
+    "capabilities": [
+      "color:temperature",
+      "colorable",
+      "nameable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state",
+      "fading"
+    ],
+    "types": [
+      "miio:yeelight",
+      "miio",
+      "light"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#FFCE9F",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ],
+    "childs": []
+  },
+  {
+    "id": "miio:335406965",
+    "name": "Lampe Bureau Anthony",
+    "model": "yeelink.light.lamp4",
+    "capabilities": [
+      "color:temperature",
+      "colorable",
+      "nameable",
+      "dimmable",
+      "brightness",
+      "switchable-power",
+      "restorable-state",
+      "power",
+      "state",
+      "fading"
+    ],
+    "types": [
+      "miio:yeelight",
+      "miio",
+      "light"
+    ],
+    "values": [
+      {
+        "name": "color",
+        "value": "#FFCE9F",
+        "unit": "hex"
+      },
+      {
+        "name": "dimmable",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "name": "switchable-power",
+        "value": false
+      }
+    ],
+    "childs": []
+  }
+]

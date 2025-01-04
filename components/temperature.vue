@@ -1,5 +1,6 @@
 <template>
-  <div class="h-96">
+  <div class="w-auto">
+    <div v-if="expanded" class="p-6" @click="expanded = false">
     <div class="text-3xl text-center my-6">{{ device.name }}</div>
     <div class="flex justify-center items-center text-center">
     <div class="w-72 h-72 rounded-full flex flex-col justify-center items-center" :style="`background: ${color}`">
@@ -7,9 +8,19 @@
       <div>
         <p class="text-5xl p-2"><Icon :name="`uil:${icon}`" class="text-4xl" />{{ temperature }}{{ temperatureUnit }} </p>
         <p class="text-5xl p-2"><Icon name="uil:tear" class="text-4xl" />{{ humidity }}{{ humidityUnit }}</p>
-        <p v-if="props.showPressure" class="text-5xl p-2">{{ pressure }}{{ pressureUnit }}</p>
       </div>
     </div>
+    </div>
+    </div>
+    <div v-else class="p-6 rounded-lg flex" :style="`background: ${color}`" @click="expanded = true">
+      <div class="flex justify-center flex-col flex-1">
+        <div class="text-2xl">{{ device.name }}</div>
+        <p class="text-3xl">{{ comment }}</p>
+      </div>
+      <div class="flex justify-center flex-1">
+        <p class="text-3xl p-2 text-center"><Icon :name="`uil:${icon}`" class="text-4xl" />{{ temperature }}{{ temperatureUnit }} </p>
+        <p class="text-3xl p-2 text-center"><Icon name="uil:tear" class="text-4xl" />{{ humidity }}{{ humidityUnit }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +34,7 @@ const humidity = ref(0)
 const humidityUnit = ref('%')
 const pressure = ref(0)
 const pressureUnit = ref('hPa')
+const expanded = ref(false)
 const props = defineProps({
   device: {
     default: null

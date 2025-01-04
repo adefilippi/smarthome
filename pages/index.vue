@@ -1,11 +1,10 @@
 <template>
-  <masonry-wall :items="devices" :ssr-columns="1" maxColumns="3" :gap="16">
+  <masonry-wall :items="devices" :ssr-columns="1"  :gap="16" class="p-3">
     <template #default="{ item, index }">
       <clock v-if="item.model === 'clock'"></clock>
       <light-switch v-else-if="item.model === 'miio:gateway-light' || item.model === 'yeelink.light.bslamp2' || item.model === 'yeelink.light.color1'" :device="item" @state-changed="onStateChanged"></light-switch>
-      <light-switch v-else-if="item.model === 'yeelink.light.lamp4'" :device="item" @state-changed="onStateChanged"></light-switch>
+      <mono-light-switch v-else-if="item.model === 'yeelink.light.lamp4'" :device="item" @state-changed="onStateChanged"></mono-light-switch>
       <temperature v-else-if="item.model === 'lumi.weather'" :device="item"></temperature>
-      <div v-else></div>
     </template>
   </masonry-wall>
 </template>
@@ -15,7 +14,7 @@ import {useMiioStore} from '@/stores/miio'
 import Clock from '@/components/clock.vue'
 import MasonryWall from "@yeger/vue-masonry-wall";
 import LightSwitch from "~/components/lightSwitch.vue";
-
+import MonoLightSwitch from "~/components/monoLightSwitch.vue";
 
 const disabled = ref(false)
 const color = ref('#318CE7FF')

@@ -13,6 +13,9 @@ export default defineEventHandler(async (event) => {
         const devicesList = []
         try {
 
+            const fake = fs.readFileSync('./server/fake.json', 'utf8');
+            return JSON.parse(fake);
+
             // Load file devices.json
             const data = fs.readFileSync('./server/devices.json', 'utf8');
             const devicesListFromJson = JSON.parse(data);
@@ -29,9 +32,7 @@ export default defineEventHandler(async (event) => {
                 console.log("Connecting to " + deviceItem.ip)
                 await miio.device({address: deviceItem.ip, token: deviceItem.token})
                     .then(async device => {
-                        devicesList.push(device)
                         const name = devicesListFromJson.names.find(n => n.id === device.id)
-
                         const d = {
                             id: device.id,
                             name: name === undefined ? deviceItem.name : name.name,
@@ -44,6 +45,11 @@ export default defineEventHandler(async (event) => {
 
                         if (device.children !== undefined) {
                             for (const child of device.children()) {
+
+                                if([...child.metadata.capabilities].length === 0) {
+                                    continue
+                                }
+
                                 const childName = devicesListFromJson.names.find(n => n.id === child.id)
 
                                 if (child.miioModel === undefined) {
@@ -62,7 +68,12 @@ export default defineEventHandler(async (event) => {
                                 devices.push(ch)
                             }
                         }
-                        devices.push(d)
+                        console.log( device.model)
+                        if([...device.metadata.capabilities].length  >= 0 && device.miioModel !== 'lumi.gateway.v3') {
+                            devicesList.push(device)
+                            devices.push(d)
+                        }
+
                     })
                     .catch(err => console.error(err));
             }

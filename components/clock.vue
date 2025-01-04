@@ -1,8 +1,8 @@
 <template>
-  <div class="h-96 flex justify-center items-center">
-    <div class=" p-24">
-      <p class="text-4xl">{{ date }}</p>
-      <p class="text-9xl">{{ time }}</p>
+  <div class="flex justify-center items-center">
+    <div class="p-6">
+      <p class="text-4xl">{{ date }}</p> &nbsp;
+      <p class="text-8xl">{{ time }}</p>
     </div>
   </div>
 </template>
